@@ -143,6 +143,20 @@ const deleteCollectingPoint = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 }
+
+const deleteNeighborhood = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const neighborhood = await Neighborhood.findByIdAndDelete(id);
+        if (!neighborhood) {
+            return res.status(404).json({ message: "Neighborhood not found" });
+        }
+        res.status(200).json({ message: "Neighborhood deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+}
 export default {
     getAllRoads,
     getAllCollectingPoints,
@@ -151,5 +165,6 @@ export default {
     addCollectingPoint,
     addNeighborhood,
     deleteRoad,
-    deleteCollectingPoint
+    deleteCollectingPoint,
+    deleteNeighborhood
 }
