@@ -23,3 +23,4 @@ router.delete("/deleteRoad/:id", deleteRoad);
 router.delete("/deleteCollectingPoint/:id", deleteCollectingPoint);
 
 router.delete("/deleteNeighborhood/:id", deleteNeighborhood);
+

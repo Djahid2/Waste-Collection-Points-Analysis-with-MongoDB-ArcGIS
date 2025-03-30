@@ -1,7 +1,7 @@
 import Road from "../models/Road.js";
 import CollectingPoint from "../models/CollectingPoint.js";
 import Neighborhood from "../models/Neighborhood.js";
-import { roadType, frequency } from "../constants/enums.js";
+import { roadType,frequency } from "../constants/enums.js";
 
 const getAllRoads = async (req, res) => {
     try {
@@ -157,7 +157,18 @@ const deleteNeighborhood = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 }
+
+const test = async (req, res) => {
+    // Test function to check if the server is running
+    try {
+        res.status(200).json({ message: "Server is running" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+}
 export default {
+    test,
     getAllRoads,
     getAllCollectingPoints,
     getAllNeighborhoods,
