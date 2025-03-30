@@ -1,7 +1,7 @@
 import mongodb from './config.js';
 import resouceRoutes from './routes/resourcesRoute.js';
+import analysisRoutes from './routes/analysisRoute.js';
 const express = require('express');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -18,9 +18,9 @@ mongodb();
 app.use(express.json());
 app.use(cors());
 
-// Import routes
 
-app,use('/api/resources', resouceRoutes);
+app.use('/api/resources', resouceRoutes);
+app.use('/api/analysis', analysisRoutes);
 
 
 app.listen(PORT, () => {

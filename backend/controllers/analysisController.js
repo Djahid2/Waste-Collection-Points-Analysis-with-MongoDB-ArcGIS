@@ -43,3 +43,11 @@ const getBinToPopulationRatio = async (req, res) => {
 
     }
 }
+
+const getSuggestedBinLocation = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error : getSuggestedBinLocation" });
+    }
+}
