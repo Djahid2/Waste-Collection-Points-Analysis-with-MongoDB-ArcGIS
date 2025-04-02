@@ -21,7 +21,7 @@ const roadType = {
 }
 
 
-export default {
+export {
     binFrequency,
     roadType,
     binStatus

@@ -1,7 +1,8 @@
-import Road from "../models/Road.js";
-import CollectingPoint from "../models/CollectingPoint.js";
-import Neighborhood from "../models/Neighborhood.js";
-import { roadType,binFrequency,binStatus } from "../constants/enums.js";
+import Road from "../models/roadModel.js";
+import CollectingPoint from "../models/collectingPointModel.js";
+import Neighborhood from "../models/neighbourhoodModel.js";
+import { binStatus, binFrequency, roadType } from "../constants/enums.js";
+
 
 // Controller functions for handling requests related to roads, collecting points, and neighborhoods
 //get all roads, collecting points, and neighborhoods
@@ -320,7 +321,7 @@ const test = async (req, res) => {
     }
 }
 
-export default {
+export {
     test,
     getAllRoads,
     getAllCollectingPoints,

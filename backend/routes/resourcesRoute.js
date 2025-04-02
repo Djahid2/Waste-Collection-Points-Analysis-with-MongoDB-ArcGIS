@@ -3,7 +3,7 @@ import {
     getAllRoads, getAllCollectingPoints, getAllNeighborhoods, 
     addRoad, addNeighborhood, addCollectingPoint,
     deleteRoad, deleteCollectingPoint, deleteNeighborhood,
-    updateRoad, updateCollectingPoint, updateNeighborhood
+    updateRoad, updateCollectingPoint, updateNeighborhood,test
 } from "../controllers/resouceController.js";
 
 const router = Router();
@@ -37,3 +37,7 @@ router.patch("/updateCollectingPoint/:id", updateCollectingPoint);
 
 router.patch("/updateNeighborhood/:id", updateNeighborhood);
 
+// test endpoint to check if the server is running
+router.get("/test", test);
+
+export default router;

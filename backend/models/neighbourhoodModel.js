@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 
 const NeighborhoodSchema = new mongoose.Schema({
@@ -36,4 +36,4 @@ const NeighborhoodSchema = new mongoose.Schema({
 });
 
 NeighborhoodSchema.index({ geometry: '2dsphere' });
-module.exports = mongoose.model('Neighborhood', NeighborhoodSchema);
+export default mongoose.model('Neighborhood', NeighborhoodSchema);

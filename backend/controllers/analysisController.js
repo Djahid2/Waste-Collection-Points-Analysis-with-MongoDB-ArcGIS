@@ -1,7 +1,7 @@
 import Road from "../models/roadModel.js";
 import CollectingPoint from "../models/collectingPointModel.js";
 import Neighborhood from "../models/neighbourhoodModel.js";
-import { roadType, frequency } from "../constants/enums.js";
+import { roadType, binFrequency } from "../constants/enums.js";
 
 const getDensity = async (req, res) => {
     try {
@@ -46,8 +46,12 @@ const getBinToPopulationRatio = async (req, res) => {
 
 const getSuggestedBinLocation = async (req, res) => {
     try {
-        
+
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error : getSuggestedBinLocation" });
     }
 }
+
+export {
+    getDensity, getNearbyCollectionPoint, getNearestRoad, getLowDensityArea, getBinToPopulationRatio, getSuggestedBinLocation
+};

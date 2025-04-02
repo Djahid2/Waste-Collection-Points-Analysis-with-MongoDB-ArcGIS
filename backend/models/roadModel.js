@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-import roadType from '../constants/enums.js';
+import mongoose from 'mongoose';
+import {roadType} from '../constants/enums.js';
 import CollectingPoint from './collectingPointModel.js';
-import Neighborhood from './neighborhoodModel.js';
+import Neighborhood from './neighbourhoodModel.js';
 
 const RoadSchema = new mongoose.Schema({
     osm_id: {
@@ -37,4 +37,4 @@ RoadSchema.pre('findByIdAndDelete', async function (next) {
 
 RoadSchema.index({ geometry: '2dsphere' });
 
-module.exports = mongoose.model('Road', RoadSchema);
+export default mongoose.model('Road', RoadSchema);

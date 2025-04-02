@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
-import {frequency,status} from '../constants/enums';
+import mongoose from 'mongoose';
+import { binStatus, binFrequency } from '../constants/enums.js';
+
 
 const CollectingPointSchema = new mongoose.Schema({
-    name:string,
+    name: String,
     road:{
         type:mongoose.Schema.Types.ObjectId,
         ref: 'road'
@@ -21,11 +22,11 @@ const CollectingPointSchema = new mongoose.Schema({
     capacity: Number,
     frequency: {
         type: String,
-        enum: Object.values(frequency),
+        enum: Object.values(binFrequency),
     },
     status: {
         type: String,
-        enum: Object.values(status),
+        enum: Object.values(binStatus),
     },
 
 });
@@ -38,4 +39,4 @@ CollectingPointSchema.pre('findByIdAndDelete', async function (next) {
 
 CollectingPointSchema.index({ location: '2dsphere' });
 
-module.exports = mongoose.model('CollectingPoint', CollectingPointSchema);
+export default mongoose.model('CollectingPoint', CollectingPointSchema);
