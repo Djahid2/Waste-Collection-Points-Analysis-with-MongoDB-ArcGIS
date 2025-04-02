@@ -1,113 +1,107 @@
-{
-  "type": "FeatureCollection",
-  "generator": "overpass-turbo",
-  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
-  "timestamp": "2025-03-25T12:08:00Z",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/4268625190",
-        "amenity": "waste_basket"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.1948672,
-          36.7193422
-        ]
-      },
-      "id": "node/4268625190"
+[
+  {
+    "type": "Feature",
+    "properties": {
+      "@id": "node/4268625190",
+      "amenity": "waste_basket"
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/4850112859",
-        "amenity": "waste_basket"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.1902302,
-          36.7154258
-        ]
-      },
-      "id": "node/4850112859"
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        3.1948672,
+        36.7193422
+      ]
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/11247675682",
-        "amenity": "waste_basket"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.1772826,
-          36.7201066
-        ]
-      },
-      "id": "node/11247675682"
+    "id": "node/4268625190"
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "@id": "node/4850112859",
+      "amenity": "waste_basket"
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/11247690296",
-        "amenity": "waste_basket"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.1770502,
-          36.7202203
-        ]
-      },
-      "id": "node/11247690296"
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        3.1902302,
+        36.7154258
+      ]
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/11364631489",
-        "amenity": "waste_basket"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.1866073,
-          36.7334696
-        ]
-      },
-      "id": "node/11364631489"
+    "id": "node/4850112859"
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "@id": "node/11247675682",
+      "amenity": "waste_basket"
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/11378761127",
-        "amenity": "waste_basket"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.1848764,
-          36.7364029
-        ]
-      },
-      "id": "node/11378761127"
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        3.1772826,
+        36.7201066
+      ]
     },
-    {
-      "type": "Feature",
-      "properties": {
-        "@id": "node/11582024555",
-        "amenity": "waste_basket"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          3.1868724,
-          36.7336908
-        ]
-      },
-      "id": "node/11582024555"
-    }
-  ]
-}
+    "id": "node/11247675682"
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "@id": "node/11247690296",
+      "amenity": "waste_basket"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        3.1770502,
+        36.7202203
+      ]
+    },
+    "id": "node/11247690296"
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "@id": "node/11364631489",
+      "amenity": "waste_basket"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        3.1866073,
+        36.7334696
+      ]
+    },
+    "id": "node/11364631489"
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "@id": "node/11378761127",
+      "amenity": "waste_basket"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        3.1848764,
+        36.7364029
+      ]
+    },
+    "id": "node/11378761127"
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "@id": "node/11582024555",
+      "amenity": "waste_basket"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        3.1868724,
+        36.7336908
+      ]
+    },
+    "id": "node/11582024555"
+  }
+]
