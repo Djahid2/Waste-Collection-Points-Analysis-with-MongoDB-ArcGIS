@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-import frequency from '../constants/enums';
+import {frequency,status} from '../constants/enums';
 
 const CollectingPointSchema = new mongoose.Schema({
     name:string,
@@ -22,6 +22,10 @@ const CollectingPointSchema = new mongoose.Schema({
     frequency: {
         type: String,
         enum: Object.values(frequency),
+    },
+    status: {
+        type: String,
+        enum: Object.values(status),
     },
 
 });

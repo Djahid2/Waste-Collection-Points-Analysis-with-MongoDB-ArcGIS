@@ -1,9 +1,15 @@
-const frequency = {
+const binFrequency = {
     DAILY : 'DAILY',
     WEEKLY : 'WEEKLY',
     MONTHLY : 'MONTHLY',
     YEARLY : 'YEARLY',
     ONETIME : 'ONETIME'
+}
+
+const binStatus ={
+    SATURATEd : 'SATURATED',
+    EMPTY : 'EMPTY',
+    PARTIALLY_FULL : 'PARTIALLY_FULL',
 }
 
 const roadType = {
@@ -16,6 +22,7 @@ const roadType = {
 
 
 export default {
-    frequency,
-    roadType
+    binFrequency,
+    roadType,
+    binStatus
 };
