@@ -1,0 +1,38 @@
+import React from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import "../css/map.css"; // Assurez-vous d'importer le fichier CSS pour le style de la carte
+const MapComponent = () => {
+  // Coordonnées de Bab Ezzouar
+  const center = [36.7268319170765,3.1853721052532684];
+
+  // Points à afficher sur la carte
+  const points = [
+    { id: 1, position: [36.7133, 3.2125], name: "Centre commercial" },
+    { id: 2, position: [36.715, 3.215], name: "Université USTHB" },
+    { id: 3, position: [36.7105, 3.2102], name: "Gare ferroviaire" },
+  ];
+
+  return (
+   <div id="Maps">
+    <h2 >Maps</h2>
+    <div className="map1">
+    <div className="map-container">
+    <MapContainer center={center} zoom={14} className="leaflet-container">
+      {/* Fond de carte OpenStreetMap */}
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+      {/* Ajout des marqueurs */}
+      {points.map((point) => (
+        <Marker key={point.id} position={point.position}>
+          <Popup>{point.name}</Popup>
+        </Marker>
+      ))}
+    </MapContainer>
+    </div>
+    </div>
+    </div>
+  );
+};
+
+export default MapComponent;

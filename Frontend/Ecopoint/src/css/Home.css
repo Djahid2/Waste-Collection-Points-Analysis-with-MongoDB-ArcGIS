@@ -1,0 +1,13 @@
+.home {
+    margin-top: 4%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+   text-align: center;
+
+}
+.home-image img{
+    width: 80%;
+    height: auto;
+    
+}
