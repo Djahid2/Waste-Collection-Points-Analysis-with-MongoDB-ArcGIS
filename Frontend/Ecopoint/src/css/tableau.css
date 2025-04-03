@@ -1,0 +1,58 @@
+/* Style de base pour le tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Style pour les en-têtes */
+th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 15px;
+    text-transform: uppercase;
+}
+
+/* Style pour les cellules */
+td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+/* Alternance des couleurs des lignes */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Effet au survol */
+tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.tableau-container{
+    margin: 4% 6%;
+}
+
+.list-btn{
+    display: flex;
+    gap: 11px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
