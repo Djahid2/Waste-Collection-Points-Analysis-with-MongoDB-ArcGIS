@@ -20,7 +20,6 @@ const roadType = {
     PAVED : 'PAVED'
 }
 
-
 export {
     binFrequency,
     roadType,
