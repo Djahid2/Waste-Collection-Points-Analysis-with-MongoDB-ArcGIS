@@ -1,6 +1,7 @@
 import Road from "../models/roadModel.js";
 import CollectingPoint from "../models/collectingPointModel.js";
 import Neighborhood from "../models/neighbourhoodModel.js";
+import Commun from "../models/communModel.js";
 import { binStatus, binFrequency, roadType } from "../constants/enums.js";
 
 
@@ -36,6 +37,16 @@ const getAllNeighborhoods = async (req, res) => {
     }
 }
 
+const getAllCommuns = async (req, res) => {
+    try {
+        const communs = await Commun.find({});
+        res.status(200).json(communs);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+}
+
 // Add new road, collecting point, and neighborhood
 const addRoad = async (req, res) => {
     try {
@@ -62,36 +73,37 @@ const addRoad = async (req, res) => {
 }
 
 const addCollectingPoint = async (req, res) => {
-try{
-    const{name,road,location,capacity,frequency,status} = req.body;
-    if(!road || !location || !capacity || !frequency || !status){
-        return res.status(400).json({message: "All fields are required"});
+    try {
+        const { name, road, location, capacity, frequency, status } = req.body;
+        if (!road || !location || !capacity || !frequency || !status) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+        if (!Object.values(binStatus).includes(status)) {
+            return res.status(400).json({ message: "Invalid status" });
+        }
+        if (!Object.values(binFrequency).includes(frequency)) {
+            return res.status(400).json({ message: "Invalid frequency" });
+        }
+        if (location.type !== 'Point') {
+            return res.status(400).json({ message: "Invalid location type" });
+        }
+        if (!Array.isArray(location.coordinates) || location.coordinates.length !== 2) {
+            return res.status(400).json({ message: "Invalid coordinates" });
+        }
+        const collectingPoint = new CollectingPoint({ name, road, location, capacity, frequency });
+        await collectingPoint.save();
+        res.status(201).json(collectingPoint);
     }
-    if(!Object.values(binStatus).includes(status)){
-        return res.status(400).json({message: "Invalid status"});
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+
     }
-    if(!Object.values(binFrequency).includes(frequency)){
-        return res.status(400).json({message: "Invalid frequency"});
-    }
-    if(location.type !== 'Point'){
-        return res.status(400).json({message: "Invalid location type"});
-    }
-    if(!Array.isArray(location.coordinates) || location.coordinates.length !== 2){
-        return res.status(400).json({message: "Invalid coordinates"});
-    }
-    const collectingPoint = new CollectingPoint({name,road,location,capacity,frequency});
-    await collectingPoint.save();
-    res.status(201).json(collectingPoint);
 }
-catch(error){
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-    
-}}
 
 const addNeighborhood = async (req, res) => {
     try {
-        const { name, osm_id, geometry,collectingPoints,roads, population, area } = req.body;
+        const { name, osm_id, geometry, collectingPoints, roads, population, area } = req.body;
         if (!osm_id || !geometry) {
             return res.status(400).json({ message: "osm_id and geometry are required" });
         }
@@ -131,7 +143,7 @@ const deleteRoad = async (req, res) => {
         if (!road) {
             return res.status(404).json({ message: "Road not found" });
         }
-        
+
         res.status(200).json({ message: "Road deleted successfully" });
     } catch (error) {
         console.error(error);
@@ -172,9 +184,9 @@ const updateCollectingPoint = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, road, location, capacity, frequency, status } = req.body;
-        
+
         const updateFields = {};
-        
+
         if (name) updateFields.name = name;
         if (road) updateFields.road = road;
         if (capacity) updateFields.capacity = capacity;
@@ -199,14 +211,14 @@ const updateCollectingPoint = async (req, res) => {
             }
             updateFields.location = location;
         }
-        
+
         // Update only the provided fields
         const collectingPoint = await CollectingPoint.findByIdAndUpdate(id, updateFields, { new: true });
-        
+
         if (!collectingPoint) {
             return res.status(404).json({ message: "Collecting point not found" });
         }
-        
+
         res.status(200).json(collectingPoint);
     } catch (error) {
         console.error(error);
@@ -218,14 +230,14 @@ const updateNeighborhood = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, geometry, collectingPoints, roads, population, area } = req.body;
-        
+
         // Initialize an empty object to store update fields
         const updateFields = {};
-        
+
         if (name) updateFields.name = name;
         if (population) updateFields.population = population;
         if (area) updateFields.area = area;
-        
+
         // Validate and update geometry if provided
         if (geometry) {
             if (geometry.type !== 'Polygon') {
@@ -236,7 +248,7 @@ const updateNeighborhood = async (req, res) => {
             }
             updateFields.geometry = geometry;
         }
-        
+
         // Validate and update collectingPoints if provided
         if (collectingPoints) {
             if (!Array.isArray(collectingPoints)) {
@@ -244,7 +256,7 @@ const updateNeighborhood = async (req, res) => {
             }
             updateFields.collectingPoints = collectingPoints;
         }
-        
+
         // Validate and update roads if provided
         if (roads) {
             if (!Array.isArray(roads)) {
@@ -255,11 +267,11 @@ const updateNeighborhood = async (req, res) => {
 
         // Update only the provided fields
         const neighborhood = await Neighborhood.findByIdAndUpdate(id, updateFields, { new: true });
-        
+
         if (!neighborhood) {
             return res.status(404).json({ message: "Neighborhood not found" });
         }
-        
+
         res.status(200).json(neighborhood);
     } catch (error) {
         console.error(error);
@@ -326,6 +338,7 @@ export {
     getAllRoads,
     getAllCollectingPoints,
     getAllNeighborhoods,
+    getAllCommuns,
     addRoad,
     addCollectingPoint,
     addNeighborhood,

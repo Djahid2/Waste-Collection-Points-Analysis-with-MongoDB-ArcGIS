@@ -1,40 +1,41 @@
 import mongoose from 'mongoose';
-import {roadType} from '../constants/enums.js';
-import CollectingPoint from './collectingPointModel.js';
-import Neighborhood from './neighbourhoodModel.js';
+
+const AttributesSchema = new mongoose.Schema({
+    FID: Number,
+    osm_id: Number,
+    code: Number,
+    fclass: String,
+    name: String,
+    ref: String,
+    oneway: String,
+    maxspeed: Number,
+    layer: Number,
+    bridge: String,
+    tunnel: String,
+    FID_1: Number,
+    osm_id_1: Number,
+    code_1: Number,
+    fclass_1: String,
+    name_1: String,
+    ref_1: String,
+    oneway_1: String,
+    maxspeed_1: Number,
+    layer_1: Number,
+    bridge_1: String,
+    tunnel_1: String,
+    Cartier: String
+});
 
 const RoadSchema = new mongoose.Schema({
-    osm_id: {
-        type: String,
-        required: true,
-    },
-    name: String,
-    type: {
-        type: String,
-        enum: Object.values(roadType),
-    },
+    attributes: AttributesSchema,
     geometry: {
-        type: {
-            type: String,
-            enum: ['LineString'],
-            required: true
-        },
-        coordinates: {
-            type: [[Number]],
+        paths: {
+            type: [[[Number]]], // 3D array to handle paths
             required: true
         }
     }
 });
 
-RoadSchema.pre('findByIdAndDelete', async function (next) {
-    const roadId = this.getQuery()._id;
-    await CollectingPoint.deleteMany({ road: roadId });
-    await Neighborhood.updateMany({ roads: roadId }
-        , { $pull: { roads: roadId } });
+const Road = mongoose.model('Road', RoadSchema);
 
-    next();
-});
-
-RoadSchema.index({ geometry: '2dsphere' });
-
-export default mongoose.model('Road', RoadSchema);
+export default Road;

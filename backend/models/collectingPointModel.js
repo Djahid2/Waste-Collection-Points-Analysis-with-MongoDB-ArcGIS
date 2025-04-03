@@ -1,42 +1,32 @@
 import mongoose from 'mongoose';
-import { binStatus, binFrequency } from '../constants/enums.js';
+const GeometrySchema = new mongoose.Schema({
+    x: {
+        type: Number,
+        required: true
+    },
+    y: {
+        type: Number,
+        required: true
+    }
+});
 
+const AttributesSchema = new mongoose.Schema({
+    FID: Number,
+    id: String,
+    amenity: String,
+    route: Number,
+    dsatur: Number,
+    esatur: String
+});
 
 const CollectingPointSchema = new mongoose.Schema({
-    name: String,
-    road:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref: 'road'
-    },
-    location:{
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-        },
-        coordinates: {
-            type: [Number],
-            required: true
-        }
-    },
-    capacity: Number,
-    frequency: {
-        type: String,
-        enum: Object.values(binFrequency),
-    },
-    status: {
-        type: String,
-        enum: Object.values(binStatus),
-    },
-
+    attributes: AttributesSchema,
+    geometry: {
+        type:GeometrySchema,
+        required: true
+    }
 });
 
-CollectingPointSchema.pre('findByIdAndDelete', async function (next) {
-    const collectingPointId = this.getQuery()._id;
-    await Neighborhood.updateMany({ collectingPoints: collectingPointId }, { $pull: { collectingPoints: collectingPointId } });
-    next();
-});
+const CollectingPoint = mongoose.model('CollectingPoints', CollectingPointSchema);
 
-CollectingPointSchema.index({ location: '2dsphere' });
-
-export default mongoose.model('CollectingPoint', CollectingPointSchema);
+export default CollectingPoint;

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-    getAllRoads, getAllCollectingPoints, getAllNeighborhoods, 
+    getAllRoads, getAllCollectingPoints, getAllNeighborhoods, getAllCommuns,
     addRoad, addNeighborhood, addCollectingPoint,
     deleteRoad, deleteCollectingPoint, deleteNeighborhood,
     updateRoad, updateCollectingPoint, updateNeighborhood,test
@@ -15,6 +15,8 @@ router.get("/allRoads", getAllRoads);
 router.get("/allCollectingPoints", getAllCollectingPoints);
 
 router.get("/allNeighborhoods", getAllNeighborhoods);
+
+router.get("/allCommuns", getAllCommuns);
 
 // add new roads, collecting points and neighborhoods
 router.post("/addRoad", addRoad);
