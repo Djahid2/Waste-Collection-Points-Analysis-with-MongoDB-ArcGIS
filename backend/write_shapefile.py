@@ -30,7 +30,7 @@ for point in points:
 gdf = gpd.GeoDataFrame(data, crs="EPSG:4326")  # Set CRS to WGS84 (EPSG:4326)
 
 # Ensure the output directory exists
-output_dir = "../region_files/shape"
+output_dir = "../region files/shape"
 os.makedirs(output_dir, exist_ok=True)
 
 # Write to ESRI Shapefile
