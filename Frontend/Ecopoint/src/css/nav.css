@@ -1,0 +1,60 @@
+/* Style de base du nav */
+nav {
+    background-color: #f8f9fa;
+    padding: 20px 20px;
+    position: fixed; /* Fixe le nav en haut */
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: background-color 0.4s ease, padding 0.4s ease;
+    z-index: 1000; /* Toujours au-dessus */
+}
+
+/* Effet sticky (le nav devient plus petit en scrollant) */
+.scrolled {
+    background-color: #ffffff; /* Change la couleur au scroll */
+    padding: 5px 20px; /* Réduit la taille du padding */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ajoute une ombre */
+}
+
+/* Style du menu */
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style des liens */
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Animation au hover */
+nav ul a:hover {
+    color: #00ff9d;
+    transform: scale(1.1); /* Effet zoom léger */
+}
+
+/* Effet soulignement animé */
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #00ff9d;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+}

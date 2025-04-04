@@ -1,0 +1,15 @@
+.leaflet-container {
+    height: 500px; /* Hauteur de la carte */
+    width: 100%; /* Largeur de la carte */
+  }
+#Maps h2{
+    
+    text-align: center;
+}
+.map1{
+    margin: 0% 10%;
+    background-color: rgb(201, 201, 201);
+}
+.map-container {
+    margin: 0% 11%;
+}
