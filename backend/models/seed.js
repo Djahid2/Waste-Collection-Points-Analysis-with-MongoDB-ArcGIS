@@ -1,24 +1,32 @@
 import mongoose from 'mongoose';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url'; // Import to handle __dirname in ES modules
 import Road from './roadModel.js';
 import CollectingPoint from './collectingPointModel.js';
-import Neighborhood from './neighborhoodModel.js';
+import Neighborhood from './neighbourhoodModel.js';
 import Commun from './communModel.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
 // MongoDB connection URI
-const MONGODB_URI = process.env.MONGODB_URI ; // Replace with your .env value if needed
-const basePath = process.env.BASE_DATA_PATH ||'../region files/' ; // Replace with your database name
+const MONGODB_URI = process.env.MONGODB_URI; // Replace with your .env value if needed
+const basePath = process.env.BASE_DATA_PATH || '../region files/'; // Replace with your database name
+
+// Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Paths to JSON files
 const dataFiles = {
-    roads: path.join(__dirname, basePath+'roads.json'),
-    collectingPoints: path.join(__dirname,basePath+ 'collecting Points babz.json'),
-    neighborhoods: path.join(__dirname,basePath+ 'quartiers babz.json'),
-    communes: path.join(__dirname, basePath+'communes_babz.json'),
+    roads: path.join(__dirname, basePath + 'roads.json'),
+    collectingPoints: path.join(__dirname, basePath + 'collecting Points babz.json'),
+    neighborhoods: path.join(__dirname, basePath + 'quartiers babz.json'),
+    communes: path.join(__dirname, basePath + 'commun_babz.json'),
 };
+
+console.log('Data file paths:', dataFiles);
 
 const seedDatabase = async () => {
     try {
@@ -57,6 +65,7 @@ const seedDatabase = async () => {
         // Insert data into Commun collection
         const communData = JSON.parse(fs.readFileSync(dataFiles.communes, 'utf-8'));
         await Commun.insertMany(communData);
+        console.log('Seeded Commun data successfully');
 
         // Disconnect from MongoDB
         mongoose.disconnect();
