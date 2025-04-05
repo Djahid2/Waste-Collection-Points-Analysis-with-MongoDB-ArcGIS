@@ -55,8 +55,6 @@ const getAllCommuns = async (req, res) => {
 }
 
 // Add new road, collecting point, and neighborhood
-import Road from '../models/roadModel.js';
-import { roadType, isOneway, isBridge, isTunnel } from '../constants/enums.js';
 
 const addRoad = async (req, res) => {
     try {

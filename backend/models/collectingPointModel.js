@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import binStatus from '../constants/enums.js';
+import {binStatus} from '../constants/enums.js';
 const GeometrySchema = new mongoose.Schema({
     x: {
         type: Number,
