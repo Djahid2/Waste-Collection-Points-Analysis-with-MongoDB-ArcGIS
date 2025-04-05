@@ -147,10 +147,6 @@ const addCollectingPoint = async (req, res) => {
     try {
         const { FID, id, amenity, route, dsatur, esatur, x, y } = req.body;
 
-        if (!geometry) {
-            return res.status(400).json({ message: "geometry with coordinates are required" });
-        }
-
         // Validate geometry coordinates
         if (typeof x !== 'number' || typeof y !== 'number') {
             return res.status(400).json({ message: "Geometry (x and y) must be numbers and are required" });
@@ -169,7 +165,7 @@ const addCollectingPoint = async (req, res) => {
                 amenity: amenity,
                 route: route,
                 dsatur: dsatur,
-                esatur: esatur
+                esatur: esatur || binStatus.PARTIALLY_FULL // Default to SATURATED if not provided
             },
             geometry: { x, y }
         };
