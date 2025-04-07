@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/tableau.css";
 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../css/tableau.css";
+
 const Tableau = () => {
+    const [points, setPoints] = useState([]);
     const [points, setPoints] = useState([]);
     const [editPoint, setEditPoint] = useState(null);
     const [formData, setFormData] = useState({ nom: "", adresse: "", typeDeDechet: "" });
     const [selectedIds, setSelectedIds] = useState([]);
+    const [selectedIds, setSelectedIds] = useState([]);
     const [hoveredRow, setHoveredRow] = useState(null);
+    const [filterText, setFilterText] = useState("");
     const [filterText, setFilterText] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [showAddForm, setShowAddForm] = useState(false);
@@ -43,12 +50,16 @@ const Tableau = () => {
     };
 
     const handleFilterChange = (e) => setFilterText(e.target.value.toLowerCase());
+    const handleFilterChange = (e) => setFilterText(e.target.value.toLowerCase());
 
+    const filteredRows = points.filter((p) =>
+        p.nom.toLowerCase().includes(filterText)
     const filteredRows = points.filter((p) =>
         p.nom.toLowerCase().includes(filterText)
     );
 
     const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+    const currentRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
     const currentRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     const handleEdit = (point) => {
@@ -80,6 +91,8 @@ const Tableau = () => {
     };
 
     const handleRowSelect = (id) => {
+        setSelectedIds((prev) =>
+            prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
         setSelectedIds((prev) =>
             prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
         );
@@ -184,6 +197,7 @@ const Tableau = () => {
                 <tbody>
                     {currentRows.map((point) => (
                         <tr
+                        <tr
                             key={point.id}
                             onClick={() => handleRowSelect(point.id)}
                             onMouseEnter={() => setHoveredRow(point.id)}
@@ -217,6 +231,7 @@ const Tableau = () => {
                                     <button onClick={handleSave}>Enregistrer</button>
                                 ) : (
                                     <button onClick={() => handleEdit(point)}>Modifier</button>
+                                    <button onClick={() => handleEdit(point)}>Modifier</button>
                                 )}
                             </td>
                         </tr>
@@ -239,3 +254,4 @@ const Tableau = () => {
 };
 
 export default Tableau;
+
