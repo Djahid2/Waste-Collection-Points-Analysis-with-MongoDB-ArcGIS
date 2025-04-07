@@ -1,36 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "../css/map.css"; // Assurez-vous d'importer le fichier CSS pour le style de la carte
-const MapComponent = () => {
-  // Coordonnées de Bab Ezzouar
-  const center = [36.7268319170765,3.1853721052532684];
+import "../css/map.css"; // Ensure you have this CSS for styling the map container
 
-  // Points à afficher sur la carte
-  const points = [
-    { id: 1, position: [36.7133, 3.2125], name: "Centre commercial" },
-    { id: 2, position: [36.715, 3.215], name: "Université USTHB" },
-    { id: 3, position: [36.7105, 3.2102], name: "Gare ferroviaire" },
-  ];
+const MapComponent = () => {
+  const center = [36.7268319170765, 3.1853721052532684]; // Initial center of the map
+  const [points, setPoints] = useState([]);
+
+  useEffect(() => {
+    // Fetch points data from the server
+    const fetchPoints = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/resources/allCollectingPoints");
+        const data = await response.json();
+        console.log("Fetched points:", data); 
+        setPoints(data); 
+      } catch (error) {
+        console.error("Error fetching points:", error);
+      }
+    };
+
+    fetchPoints();
+  }, []); 
 
   return (
-   <div id="Maps">
-    <h2 >Maps</h2>
-    <div className="map1">
-    <div className="map-container">
-    <MapContainer center={center} zoom={14} className="leaflet-container">
-      {/* Fond de carte OpenStreetMap */}
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    <div id="Maps">
+      <h2>Maps</h2>
+      <div className="map1">
+        <div className="map-container">
+          <MapContainer center={center} zoom={14} className="leaflet-container">
+            {/* Map background using OpenStreetMap */}
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      {/* Ajout des marqueurs */}
-      {points.map((point) => (
-        <Marker key={point.id} position={point.position}>
-          <Popup>{point.name}</Popup>
-        </Marker>
-      ))}
-    </MapContainer>
-    </div>
-    </div>
+            {/* Dynamically render markers */}
+            {points.map((point) => {
+              const position = [point.geometry.y, point.geometry.x]; // Make sure to use [latitude, longitude]
+              console.log("Marker position:", position); // Log for debugging
+              return (
+                <Marker key={point._id} position={position}>
+                  <Popup>{point.attributes.amenity}</Popup>
+                </Marker>
+              );
+            })}
+          </MapContainer>
+        </div>
+      </div>
     </div>
   );
 };
