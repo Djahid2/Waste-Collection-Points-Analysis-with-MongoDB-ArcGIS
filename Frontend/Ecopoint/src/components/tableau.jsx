@@ -8,13 +8,10 @@ import "../css/tableau.css";
 
 const Tableau = () => {
     const [points, setPoints] = useState([]);
-    const [points, setPoints] = useState([]);
     const [editPoint, setEditPoint] = useState(null);
     const [formData, setFormData] = useState({ nom: "", adresse: "", typeDeDechet: "" });
     const [selectedIds, setSelectedIds] = useState([]);
-    const [selectedIds, setSelectedIds] = useState([]);
     const [hoveredRow, setHoveredRow] = useState(null);
-    const [filterText, setFilterText] = useState("");
     const [filterText, setFilterText] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [showAddForm, setShowAddForm] = useState(false);
@@ -196,8 +193,7 @@ const Tableau = () => {
                 </thead>
                 <tbody>
                     {currentRows.map((point) => (
-                        <tr
-                        <tr
+                        <tr>
                             key={point.id}
                             onClick={() => handleRowSelect(point.id)}
                             onMouseEnter={() => setHoveredRow(point.id)}
