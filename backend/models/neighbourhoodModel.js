@@ -1,14 +1,5 @@
 import mongoose from 'mongoose';
 
-const GeometrySchema = new mongoose.Schema({
-    type: {
-        type: String,
-        enum: ['Polygon'], // It's a polygon
-        default: 'Polygon'
-    },
-
-});
-
 const AttributesSchema = new mongoose.Schema({
     FID: Number,
     name: String,

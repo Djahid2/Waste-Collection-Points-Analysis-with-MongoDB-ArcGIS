@@ -1,86 +1,92 @@
-import React, { useState } from "react";
-import "../css/tableau.css"; // Assuming you have a CSS file for styling
-const Tableau = () => {
-    const [pointsDeRamassage, setPointsDeRamassage] = useState([
-        { id: 1, nom: "Point A", adresse: "123 Rue Principale", typeDeDechet: "Plastique" },
-        { id: 2, nom: "Point B", adresse: "456 Avenue Centrale", typeDeDechet: "Papier" },
-        { id: 3, nom: "Point C", adresse: "789 Boulevard Sud", typeDeDechet: "Verre" },
-    ]);
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../css/tableau.css";
 
+const Tableau = () => {
+    const [points, setPoints] = useState([]);
     const [editPoint, setEditPoint] = useState(null);
     const [formData, setFormData] = useState({ nom: "", adresse: "", typeDeDechet: "" });
-    const [selectedPointIds, setSelectedPointIds] = useState([]);
+    const [selectedIds, setSelectedIds] = useState([]);
     const [hoveredRow, setHoveredRow] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1);
-    const rowsPerPage = 10; // Number of rows per page
     const [filterText, setFilterText] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 10;
 
-    const handleFilterChange = (e) => {
-        setFilterText(e.target.value.toLowerCase());
+    // Load from backend
+    useEffect(() => {
+        fetchPoints();
+    }, []);
+
+    const fetchPoints = async () => {
+        try {
+            const res = await axios.get("http://localhost:5000/api/resources/allCollectingPoints");
+            const formatted = res.data.map((p) => ({
+                id: p._id,
+                nom: p.attributes?.amenity || "N/A",
+                adresse: `X: ${p.geometry?.x}, Y: ${p.geometry?.y}`,
+                typeDeDechet: p.attributes?.esatur || "N/A",
+            }));
+            setPoints(formatted);
+        } catch (err) {
+            console.error("Erreur de chargement :", err);
+        }
     };
 
-    const filteredRows = pointsDeRamassage.filter((point) =>
-        point.nom.toLowerCase().includes(filterText)
+    const handleFilterChange = (e) => setFilterText(e.target.value.toLowerCase());
+
+    const filteredRows = points.filter((p) =>
+        p.nom.toLowerCase().includes(filterText)
     );
 
     const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
-    const startIndex = (currentPage - 1) * rowsPerPage;
-    const currentRows = filteredRows.slice(startIndex, startIndex + rowsPerPage);
+    const currentRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     const handleEdit = (point) => {
         setEditPoint(point.id);
         setFormData({ nom: point.nom, adresse: point.adresse, typeDeDechet: point.typeDeDechet });
     };
 
-    const handleSave = () => {
-        setPointsDeRamassage((prev) =>
-            prev.map((point) =>
-                point.id === editPoint ? { ...point, ...formData } : point
-            )
-        );
-        setEditPoint(null);
-        setFormData({ nom: "", adresse: "", typeDeDechet: "" });
+    const handleSave = async () => {
+        try {
+            await axios.put(`http://localhost:5000/api/resources/updateCollectingPoint/${editPoint}`, {
+                attributes: {
+                    amenity: formData.nom,
+                    esatur: formData.typeDeDechet,
+                }
+            });
+            setEditPoint(null);
+            fetchPoints();
+        } catch (err) {
+            console.error("Erreur de sauvegarde :", err);
+        }
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+    const handleDelete = async () => {
+        if (selectedIds.length === 0) return alert("Sélectionnez au moins un point.");
+        try {
+            await axios.delete("http://localhost:5000/api/resources/deleteCollectingPoint", {
+                data: { ids: selectedIds }
+            });
+            setSelectedIds([]);
+            fetchPoints();
+        } catch (err) {
+            console.error("Erreur de suppression :", err);
+        }
     };
 
     const handleRowSelect = (id) => {
-        setSelectedPointIds((prev) =>
-            prev.includes(id) ? prev.filter((pointId) => pointId !== id) : [...prev, id]
+        setSelectedIds((prev) =>
+            prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
         );
     };
 
-    const handleDelete = () => {
-        if (selectedPointIds.length > 0) {
-            setPointsDeRamassage((prev) =>
-                prev.filter((point) => !selectedPointIds.includes(point.id))
-            );
-            setSelectedPointIds([]);
-        } else {
-            alert("Veuillez sélectionner au moins une ligne à supprimer.");
-        }
-    };
-
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage((prev) => prev + 1);
-        }
-    };
-
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage((prev) => prev - 1);
-        }
-    };
+    const handlePreviousPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+    const handleNextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
     return (
-        <div  className="tableau-container" id="Info">
-        <div>
-            <div className="list-btn" style={{ marginBottom: "20px"}}>
-                <button onClick={() => alert("Ajouter un point de ramassage")}>Ajouter</button>
+        <div className="tableau-container" id="Info">
+            <div className="list-btn" style={{ marginBottom: "20px" }}>
+                <button onClick={() => alert("Formulaire d’ajout à implémenter...")}>Ajouter</button>
                 <button onClick={handleDelete}>Supprimer</button>
             </div>
             <input
@@ -103,64 +109,42 @@ const Tableau = () => {
                 </thead>
                 <tbody>
                     {currentRows.map((point) => (
-                        <tr 
+                        <tr
                             key={point.id}
                             onClick={() => handleRowSelect(point.id)}
                             onMouseEnter={() => setHoveredRow(point.id)}
                             onMouseLeave={() => setHoveredRow(null)}
                             style={{
-                                backgroundColor: hoveredRow === point.id
-                                ? "#f1f1f1" // Effet hover
-                                : selectedPointIds.includes(point.id)
-                                ? "#f0f8ff" // Si sélectionné
-                                : point.id % 2 === 0
-                                ? "#f2f2f2" // Alternance pour les lignes paires
-                                : "white", // Alternance pour les lignes impaires
-                              cursor: "pointer",
+                                backgroundColor:
+                                    hoveredRow === point.id
+                                        ? "#f1f1f1"
+                                        : selectedIds.includes(point.id)
+                                        ? "#f0f8ff"
+                                        : "white",
+                                cursor: "pointer",
                             }}
                         >
                             <td>{point.id}</td>
                             <td>
                                 {editPoint === point.id ? (
-                                    <input
-                                        type="text"
-                                        name="nom"
-                                        value={formData.nom}
-                                        onChange={handleChange}
-                                    />
+                                    <input name="nom" value={formData.nom} onChange={(e) => setFormData({ ...formData, nom: e.target.value })} />
                                 ) : (
                                     point.nom
                                 )}
                             </td>
+                            <td>{point.adresse}</td>
                             <td>
                                 {editPoint === point.id ? (
-                                    <input
-                                        type="text"
-                                        name="adresse"
-                                        value={formData.adresse}
-                                        onChange={handleChange}
-                                    />
-                                ) : (
-                                    point.adresse
-                                )}
-                            </td>
-                            <td>
-                                {editPoint === point.id ? (
-                                    <input
-                                        type="text"
-                                        name="typeDeDechet"
-                                        value={formData.typeDeDechet}
-                                        onChange={handleChange}
-                                    />
+                                    <input name="typeDeDechet" value={formData.typeDeDechet} onChange={(e) => setFormData({ ...formData, typeDeDechet: e.target.value })} />
                                 ) : (
                                     point.typeDeDechet
                                 )}
                             </td>
                             <td>
                                 {editPoint === point.id ? (
-                                    <button onClick={handleSave}>Save</button>
+                                    <button onClick={handleSave}>Enregistrer</button>
                                 ) : (
-                                    <button onClick={() => handleEdit(point)}>Edit</button>
+                                    <button onClick={() => handleEdit(point)}>Modifier</button>
                                 )}
                             </td>
                         </tr>
@@ -168,17 +152,10 @@ const Tableau = () => {
                 </tbody>
             </table>
             <div className="pagination-controls" style={{ marginTop: "10px", textAlign: "center" }}>
-                <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-                    Précédent
-                </button>
-                <span style={{ margin: "0 10px" }}>
-                    Page {currentPage} sur {totalPages}
-                </span>
-                <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-                    Suivant
-                </button>
+                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Précédent</button>
+                <span style={{ margin: "0 10px" }}>Page {currentPage} sur {totalPages}</span>
+                <button onClick={handleNextPage} disabled={currentPage === totalPages}>Suivant</button>
             </div>
-        </div>
         </div>
     );
 };

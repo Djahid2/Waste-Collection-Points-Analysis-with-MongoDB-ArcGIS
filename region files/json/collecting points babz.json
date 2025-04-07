@@ -1,269 +1,212 @@
-{
-    "displayFieldName": "",
-    "fieldAliases": {
-        "FID": "FID",
-        "FID_": "FID_",
-        "id": "id",
-        "amenity": "amenity",
-        "route": "route",
-        "dsatur": "dsatur",
-        "esatur": "esatur"
-    },
-    "geometryType": "esriGeometryPoint",
-    "spatialReference": {
-        "wkid": 4326,
-        "latestWkid": 4326
-    },
-    "fields": [
-        {
-            "name": "FID",
-            "type": "esriFieldTypeOID",
-            "alias": "FID"
+[
+    {
+        "attributes": {
+            "FID": 0,
+            "FID_": 0,
+            "id": "p1",
+            "amenity": "waste_disposal",
+            "route": 444,
+            "dsatur": 50,
+            "esatur": "F"
         },
-        {
-            "name": "FID_",
-            "type": "esriFieldTypeInteger",
-            "alias": "FID_"
-        },
-        {
-            "name": "id",
-            "type": "esriFieldTypeString",
-            "alias": "id",
-            "length": 254
-        },
-        {
-            "name": "amenity",
-            "type": "esriFieldTypeString",
-            "alias": "amenity",
-            "length": 100
-        },
-        {
-            "name": "route",
-            "type": "esriFieldTypeInteger",
-            "alias": "route"
-        },
-        {
-            "name": "dsatur",
-            "type": "esriFieldTypeDouble",
-            "alias": "dsatur"
-        },
-        {
-            "name": "esatur",
-            "type": "esriFieldTypeString",
-            "alias": "esatur",
-            "length": 1
+        "geometry": {
+            "x": 3.2013199000000441,
+            "y": 36.720237800000064
         }
-    ],
-    "features": [
-        {
-            "attributes": {
-                "FID": 0,
-                "FID_": 0,
-                "id": "p1",
-                "amenity": "waste_disposal",
-                "route": 444,
-                "dsatur": 50,
-                "esatur": "F"
-            },
-            "geometry": {
-                "x": 3.2013199000000441,
-                "y": 36.720237800000064
-            }
+    },
+    {
+        "attributes": {
+            "FID": 1,
+            "FID_": 0,
+            "id": "p2",
+            "amenity": "waste_disposal",
+            "route": 194,
+            "dsatur": 100,
+            "esatur": "T"
         },
-        {
-            "attributes": {
-                "FID": 1,
-                "FID_": 0,
-                "id": "p2",
-                "amenity": "waste_disposal",
-                "route": 194,
-                "dsatur": 100,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1923382000001084,
-                "y": 36.724115800000106
-            }
-        },
-        {
-            "attributes": {
-                "FID": 2,
-                "FID_": 0,
-                "id": "p3",
-                "amenity": "waste_disposal",
-                "route": 2121,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1853150000000596,
-                "y": 36.731513000000064
-            }
-        },
-        {
-            "attributes": {
-                "FID": 3,
-                "FID_": 0,
-                "id": "p4",
-                "amenity": "waste_disposal",
-                "route": 135,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1842677000000776,
-                "y": 36.732211000000063
-            }
-        },
-        {
-            "attributes": {
-                "FID": 4,
-                "FID_": 0,
-                "id": "p5",
-                "amenity": "waste_disposal",
-                "route": 1612,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.184517400000118,
-                "y": 36.734572600000035
-            }
-        },
-        {
-            "attributes": {
-                "FID": 5,
-                "FID_": 0,
-                "id": "p6",
-                "amenity": "waste_disposal",
-                "route": 1618,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.184740700000134,
-                "y": 36.735725700000103
-            }
-        },
-        {
-            "attributes": {
-                "FID": 6,
-                "FID_": 0,
-                "id": "p7",
-                "amenity": "waste_disposal",
-                "route": 115,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1920843000000332,
-                "y": 36.738079200000129
-            }
-        },
-        {
-            "attributes": {
-                "FID": 7,
-                "FID_": 0,
-                "id": "p8",
-                "amenity": "waste_disposal",
-                "route": 436,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1883707000001209,
-                "y": 36.732082200000036
-            }
-        },
-        {
-            "attributes": {
-                "FID": 8,
-                "FID_": 0,
-                "id": "p9",
-                "amenity": "waste_disposal",
-                "route": 430,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1880564000000504,
-                "y": 36.731141500000035
-            }
-        },
-        {
-            "attributes": {
-                "FID": 9,
-                "FID_": 0,
-                "id": "p10",
-                "amenity": "waste_disposal",
-                "route": 195,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1888549000000239,
-                "y": 36.729875100000072
-            }
-        },
-        {
-            "attributes": {
-                "FID": 10,
-                "FID_": 0,
-                "id": "p14",
-                "amenity": "waste_disposal",
-                "route": 195,
-                "dsatur": 97.432343930000002,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1837484000001268,
-                "y": 36.729872600000022
-            }
-        },
-        {
-            "attributes": {
-                "FID": 11,
-                "FID_": 0,
-                "id": "p11",
-                "amenity": "waste_disposal",
-                "route": 1458,
-                "dsatur": 99.49381065,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1859505000000468,
-                "y": 36.722176300000058
-            }
-        },
-        {
-            "attributes": {
-                "FID": 12,
-                "FID_": 0,
-                "id": "p12",
-                "amenity": "waste_disposal",
-                "route": 1425,
-                "dsatur": 99.49381065,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1863918999999896,
-                "y": 36.723362300000133
-            }
-        },
-        {
-            "attributes": {
-                "FID": 13,
-                "FID_": 0,
-                "id": "p13",
-                "amenity": "waste_disposal",
-                "route": 1458,
-                "dsatur": 99.49381065,
-                "esatur": "T"
-            },
-            "geometry": {
-                "x": 3.1860204999999837,
-                "y": 36.722057500000005
-            }
+        "geometry": {
+            "x": 3.1923382000001084,
+            "y": 36.724115800000106
         }
-    ]
-}
+    },
+    {
+        "attributes": {
+            "FID": 2,
+            "FID_": 0,
+            "id": "p3",
+            "amenity": "waste_disposal",
+            "route": 2121,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1853150000000596,
+            "y": 36.731513000000064
+        }
+    },
+    {
+        "attributes": {
+            "FID": 3,
+            "FID_": 0,
+            "id": "p4",
+            "amenity": "waste_disposal",
+            "route": 135,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1842677000000776,
+            "y": 36.732211000000063
+        }
+    },
+    {
+        "attributes": {
+            "FID": 4,
+            "FID_": 0,
+            "id": "p5",
+            "amenity": "waste_disposal",
+            "route": 1612,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.184517400000118,
+            "y": 36.734572600000035
+        }
+    },
+    {
+        "attributes": {
+            "FID": 5,
+            "FID_": 0,
+            "id": "p6",
+            "amenity": "waste_disposal",
+            "route": 1618,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.184740700000134,
+            "y": 36.735725700000103
+        }
+    },
+    {
+        "attributes": {
+            "FID": 6,
+            "FID_": 0,
+            "id": "p7",
+            "amenity": "waste_disposal",
+            "route": 115,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1920843000000332,
+            "y": 36.738079200000129
+        }
+    },
+    {
+        "attributes": {
+            "FID": 7,
+            "FID_": 0,
+            "id": "p8",
+            "amenity": "waste_disposal",
+            "route": 436,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1883707000001209,
+            "y": 36.732082200000036
+        }
+    },
+    {
+        "attributes": {
+            "FID": 8,
+            "FID_": 0,
+            "id": "p9",
+            "amenity": "waste_disposal",
+            "route": 430,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1880564000000504,
+            "y": 36.731141500000035
+        }
+    },
+    {
+        "attributes": {
+            "FID": 9,
+            "FID_": 0,
+            "id": "p10",
+            "amenity": "waste_disposal",
+            "route": 195,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1888549000000239,
+            "y": 36.729875100000072
+        }
+    },
+    {
+        "attributes": {
+            "FID": 10,
+            "FID_": 0,
+            "id": "p14",
+            "amenity": "waste_disposal",
+            "route": 195,
+            "dsatur": 97.432343930000002,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1837484000001268,
+            "y": 36.729872600000022
+        }
+    },
+    {
+        "attributes": {
+            "FID": 11,
+            "FID_": 0,
+            "id": "p11",
+            "amenity": "waste_disposal",
+            "route": 1458,
+            "dsatur": 99.49381065,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1859505000000468,
+            "y": 36.722176300000058
+        }
+    },
+    {
+        "attributes": {
+            "FID": 12,
+            "FID_": 0,
+            "id": "p12",
+            "amenity": "waste_disposal",
+            "route": 1425,
+            "dsatur": 99.49381065,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1863918999999896,
+            "y": 36.723362300000133
+        }
+    },
+    {
+        "attributes": {
+            "FID": 13,
+            "FID_": 0,
+            "id": "p13",
+            "amenity": "waste_disposal",
+            "route": 1458,
+            "dsatur": 99.49381065,
+            "esatur": "T"
+        },
+        "geometry": {
+            "x": 3.1860204999999837,
+            "y": 36.722057500000005
+        }
+    }
+]
