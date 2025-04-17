@@ -1,35 +1,4 @@
-{
-  "displayFieldName": "",
-  "fieldAliases": {
-    "FID": "FID",
-    "osm_id": "osm_id",
-    "name": "name"
-  },
-  "geometryType": "esriGeometryPolygon",
-  "spatialReference": {
-    "wkid": 4326,
-    "latestWkid": 4326
-  },
-  "fields": [
-    {
-      "name": "FID",
-      "type": "esriFieldTypeOID",
-      "alias": "FID"
-    },
-    {
-      "name": "osm_id",
-      "type": "esriFieldTypeString",
-      "alias": "osm_id",
-      "length": 80
-    },
-    {
-      "name": "name",
-      "type": "esriFieldTypeString",
-      "alias": "name",
-      "length": 80
-    }
-  ],
-  "features": [
+[
     {
       "attributes": {
         "FID": 0,
@@ -539,5 +508,4 @@
         ]
       }
     }
-  ]
-}
+]
