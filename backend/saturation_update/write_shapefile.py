@@ -17,16 +17,25 @@ points = list(collecting_points.find())
 # Convert points to GeoDataFrame
 data = []
 for point in points:
+    # Validate geometry and attributes
     if "geometry" in point and "x" in point["geometry"] and "y" in point["geometry"]:
-        data.append({
-            "id": point["attributes"]["id"],
-            "amenity": point["attributes"]["amenity"],
-            "route": point["attributes"]["route"],
-            "dsatur": point["attributes"]["dsatur"],
-            "esatur": point["attributes"]["esatur"],
-            "geometry": Point(point["geometry"]["x"], point["geometry"]["y"])
-        })
+        if "attributes" in point:
+            data.append({
+                "id": point["attributes"].get("id", "unknown"),
+                "amenity": point["attributes"].get("amenity", "unknown"),
+                "route": point["attributes"].get("route", None),
+                "dsatur": point["attributes"].get("dsatur", None),
+                "esatur": point["attributes"].get("esatur", None),
+                "estime": point["attributes"].get("estime", False),  # Include the "ideal" flag
+                "geometry": Point(point["geometry"]["x"], point["geometry"]["y"])
+            })
 
+# Check if there are valid points
+if not data:
+    print("No valid points found in the database.")
+    exit()
+
+# Create GeoDataFrame
 gdf = gpd.GeoDataFrame(data, crs="EPSG:4326")  # Set CRS to WGS84 (EPSG:4326)
 
 # Ensure the output directory exists

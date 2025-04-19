@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/tableau.css";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "../css/tableau.css";
-
 const Tableau = () => {
     const [points, setPoints] = useState([]);
     const [editPoint, setEditPoint] = useState(null);
@@ -47,16 +43,12 @@ const Tableau = () => {
     };
 
     const handleFilterChange = (e) => setFilterText(e.target.value.toLowerCase());
-    const handleFilterChange = (e) => setFilterText(e.target.value.toLowerCase());
 
-    const filteredRows = points.filter((p) =>
-        p.nom.toLowerCase().includes(filterText)
     const filteredRows = points.filter((p) =>
         p.nom.toLowerCase().includes(filterText)
     );
 
     const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
-    const currentRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
     const currentRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     const handleEdit = (point) => {
@@ -88,8 +80,6 @@ const Tableau = () => {
     };
 
     const handleRowSelect = (id) => {
-        setSelectedIds((prev) =>
-            prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
         setSelectedIds((prev) =>
             prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
         );
@@ -207,7 +197,7 @@ const Tableau = () => {
                                             : "white",
                                 cursor: "pointer",
                             }}
-                        >
+                        
                             <td>{point.id}</td>
                             <td>
                                 {editPoint === point.id ? (
@@ -226,8 +216,7 @@ const Tableau = () => {
                                 {editPoint === point.id ? (
                                     <button onClick={handleSave}>Enregistrer</button>
                                 ) : (
-                                    <button onClick={() => handleEdit(point)}>Modifier</button>
-                                    <button onClick={() => handleEdit(point)}>Modifier</button>
+                                    <><button onClick={() => handleEdit(point)}>Modifier</button><button onClick={() => handleEdit(point)}>Modifier</button></>
                                 )}
                             </td>
                         </tr>
