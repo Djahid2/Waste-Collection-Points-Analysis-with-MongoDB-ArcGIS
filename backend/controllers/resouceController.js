@@ -26,8 +26,8 @@ const getAllRoads = async (req, res) => {
 
 const getAllCollectingPoints = async (req, res) => {
     try {
-        const collectingPoints = await CollectingPoint.find({});
-        res.status(200).json(collectingPoints);
+        const points  = await CollectingPoint.find({});
+        res.status(200).json(points);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server error" });

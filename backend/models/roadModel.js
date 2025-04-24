@@ -34,34 +34,11 @@ const AttributesSchema = new mongoose.Schema({
         enum: Object.values(isTunnel),
         required: true
     },
-    FID_1: Number,
-    osm_id_1: Number,
-    code_1: Number,
-    fclass_1: {
-        type: String,
-        enum: Object.values(roadType),
-        required: true
+    Cartier: String,
+    chemin_optimal: {
+        type: Boolean,
+        default: false
     },
-    name_1: String,
-    ref_1: String,
-    oneway_1: {
-        type: String,
-        enum: Object.values(isOneway),
-        required: true
-    },
-    maxspeed_1: Number,
-    layer_1: Number,
-    bridge_1: {
-        type: String,
-        enum: Object.values(isBridge),
-        required: true
-    },
-    tunnel_1: {
-        type: String,
-        enum: Object.values(isTunnel),
-        required: true
-    },
-    Cartier: String
 });
 
 const RoadSchema = new mongoose.Schema({
