@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/tableau.css";
-
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "../css/tableau.css";
+import trash from "../assets/1.svg";
 
 const Tableau = () => {
     const [points, setPoints] = useState([]);
@@ -46,17 +43,16 @@ const Tableau = () => {
         }
     };
 
-    const handleFilterChange = (e) => setFilterText(e.target.value.toLowerCase());
+   
     const handleFilterChange = (e) => setFilterText(e.target.value.toLowerCase());
 
-    const filteredRows = points.filter((p) =>
-        p.nom.toLowerCase().includes(filterText)
+
     const filteredRows = points.filter((p) =>
         p.nom.toLowerCase().includes(filterText)
     );
 
     const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
-    const currentRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+   
     const currentRows = filteredRows.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     const handleEdit = (point) => {
@@ -90,10 +86,8 @@ const Tableau = () => {
     const handleRowSelect = (id) => {
         setSelectedIds((prev) =>
             prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
-        setSelectedIds((prev) =>
-            prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
         );
-    };
+    }
 
     const handlePreviousPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
     const handleNextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
@@ -192,47 +186,46 @@ const Tableau = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentRows.map((point) => (
-                        <tr>
-                            key={point.id}
-                            onClick={() => handleRowSelect(point.id)}
-                            onMouseEnter={() => setHoveredRow(point.id)}
-                            onMouseLeave={() => setHoveredRow(null)}
-                            style={{
-                                backgroundColor:
-                                    hoveredRow === point.id
-                                        ? "#f1f1f1"
-                                        : selectedIds.includes(point.id)
-                                            ? "#f0f8ff"
-                                            : "white",
-                                cursor: "pointer",
-                            }}
-                        >
-                            <td>{point.id}</td>
-                            <td>
-                                {editPoint === point.id ? (
-                                    <input
-                                        name="nom"
-                                        value={formData.nom}
-                                        onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
-                                    />
-                                ) : (
-                                    point.nom
-                                )}
-                            </td>
-                            <td>{point.adresse}</td>
-                            <td>{point.typeDeDechet}</td>
-                            <td>
-                                {editPoint === point.id ? (
-                                    <button onClick={handleSave}>Enregistrer</button>
-                                ) : (
-                                    <button onClick={() => handleEdit(point)}>Modifier</button>
-                                    <button onClick={() => handleEdit(point)}>Modifier</button>
-                                )}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+    {currentRows.map((point) => (
+        <tr
+            key={point.id} // Déplacez la clé ici
+            onClick={() => handleRowSelect(point.id)}
+            onMouseEnter={() => setHoveredRow(point.id)}
+            onMouseLeave={() => setHoveredRow(null)}
+            style={{
+                backgroundColor:
+                    hoveredRow === point.id
+                        ? "#f1f1f1"
+                        : selectedIds.includes(point.id)
+                            ? "#f0f8ff"
+                            : "white",
+                cursor: "pointer",
+            }}
+        >
+            <td>{point.id}</td>
+            <td>
+                {editPoint === point.id ? (
+                    <input
+                        name="nom"
+                        value={formData.nom}
+                        onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
+                    />
+                ) : (
+                    point.nom
+                )}
+            </td>
+            <td>{point.adresse}</td>
+            <td>{point.typeDeDechet}</td>
+            <td>
+                {editPoint === point.id ? (
+                    <button onClick={handleSave}>Enregistrer</button>
+                ) : (
+                    <button onClick={() => handleEdit(point)}>Modifier</button>
+                )}
+            </td>
+        </tr>
+    ))}
+</tbody>
             </table>
             <div className="pagination-controls" style={{ marginTop: "10px", textAlign: "center" }}>
                 <button onClick={handlePreviousPage} disabled={currentPage === 1}>

@@ -14,7 +14,7 @@ function App() {
       <Nav />
       <Home />
       <Maps />
-       <Tableau />
+      <Tableau />
        <AboutUs />
     </>
   )
