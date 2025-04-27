@@ -3,7 +3,7 @@ import {
     getAllRoads, getAllCollectingPoints, getAllNeighborhoods, getAllCommuns,
     addRoad, addNeighborhood, addCollectingPoint,
     deleteRoad, deleteCollectingPoint, deleteNeighborhood,
-    updateRoad, updateCollectingPoint, updateNeighborhood,test
+    updateRoad, updateCollectingPoint, updateNeighborhood,test,updateSaturation,updateCheminOptimal
 } from "../controllers/resouceController.js";
 
 const router = Router();
@@ -25,6 +25,8 @@ router.post("/addCollectingPoint", addCollectingPoint);
 
 router.post("/addNeighborhood", addNeighborhood);
 
+router.post("/updateSaturation", updateSaturation);
+router.post("/updateCheminOptimal", updateCheminOptimal);
 // delete roads, collecting points and neighborhoods by id
 router.delete("/deleteRoad/:id", deleteRoad);
 

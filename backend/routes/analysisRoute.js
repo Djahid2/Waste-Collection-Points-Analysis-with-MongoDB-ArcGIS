@@ -20,6 +20,6 @@ router.get("/lowDensityArea", getLowDensityArea);
 
 router.get("/binToPopulationRatio", getBinToPopulationRatio);
 
-router.get("/suggestedBinLocation", getSuggestedBinLocation); // amimir
+router.get("/suggestedBinLocation", getSuggestedBinLocation); // amimir // xd
 
 export default router;

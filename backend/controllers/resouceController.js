@@ -10,7 +10,8 @@ import {
     isBridge,
     isTunnel
 } from "../constants/enums.js";
-
+import updateSaturationAndGenerateShapefile from "../saturation_update/update_saturation.js";
+import updateOptimalRoutes from "../saturation_update/update_chemin_optimal.js";
 
 // Controller functions for handling requests related to roads, collecting points, and neighborhoods
 //get all roads, collecting points, and neighborhoods
@@ -53,7 +54,24 @@ const getAllCommuns = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 }
-
+const updateSaturation = async (req, res) => {
+    try {
+        await updateSaturationAndGenerateShapefile();
+        res.status(200).json({ message: "Saturation updated successfully" });
+    } catch (error) {
+        console.error("Error updating saturation:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+}
+const updateCheminOptimal = async (req, res) => {
+    try {
+        await updateOptimalRoutes();
+        res.status(200).json({ message: "Saturation updated successfully" });
+    } catch (error) {
+        console.error("Error updating saturation:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+}
 // Add new road, collecting point, and neighborhood
 
 const addRoad = async (req, res) => {
@@ -431,5 +449,7 @@ export {
     deleteNeighborhood,
     updateCollectingPoint,
     updateNeighborhood,
-    updateRoad
+    updateRoad,
+    updateSaturation,
+    updateCheminOptimal
 }

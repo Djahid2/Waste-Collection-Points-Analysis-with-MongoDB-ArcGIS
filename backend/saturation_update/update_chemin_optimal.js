@@ -8,6 +8,7 @@ const MONGODB_URI = 'mongodb://localhost:27017/sig';
 // MongoDB models
 import Road from '../models/roadModel.js';
 import CollectingPoint from '../models/collectingPointModel.js';
+import e from 'express';
 
 // Helper function to get road geometry in the right format
 function getRoadGeometry(road) {
@@ -700,10 +701,6 @@ async function updateOptimalRoutes() {
         
         console.log('Optimal route calculated and database updated successfully!');
         
-        // Disconnect from MongoDB
-        mongoose.disconnect();
-        console.log('Disconnected from MongoDB');
-        
         // Call the Python script to generate the shapefile
         exec('python saturation_update/write_shapefile_roads.py', (error, stdout, stderr) => {
             if (error) {
@@ -726,5 +723,6 @@ async function updateOptimalRoutes() {
     }
 }
 
+export default updateOptimalRoutes;
 // Run the main function
-updateOptimalRoutes();
+//updateOptimalRoutes();
