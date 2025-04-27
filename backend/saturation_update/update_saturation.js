@@ -144,7 +144,7 @@ async function updateSaturationAndGenerateShapefile() {
         console.log('Disconnected from MongoDB');
 
         // Call the Python script to generate the shapefile
-        exec('python write_shapefile.py', (error, stdout, stderr) => {
+        exec('python saturation_update/write_shapefile.py', (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error executing Python script: ${error.message}`);
                 return;
