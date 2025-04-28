@@ -55,7 +55,8 @@ const MapComponent = () => {
               <Marker key={point._id} position={position} icon={icon}>
                 <Popup>
                   {point.attributes.amenity} <br />
-                  esatur: {point.attributes.esatur}
+                  Etat de saturation: {point.attributes.esatur === "T" ? "Saturé" : "Non saturé"}<br />
+                  Degré de saturation: {point.attributes.dsatur.toFixed(2)}%
                 </Popup>
               </Marker>
             );
