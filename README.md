@@ -57,8 +57,7 @@ This project focuses on analyzing the spatial distribution of urban waste collec
 ## Contributing
 Contributions are welcome! Please follow the [contribution guidelines](CONTRIBUTING.md).
 
-## License
-This project is licensed under the [LICENSE](LICENSE) file.
+## Some picture 
+![image](https://github.com/user-attachments/assets/07635f7d-75e6-4419-8333-1dbc94cd1fc9)
+![image](https://github.com/user-attachments/assets/c182b4a7-4186-4b46-9b66-c8fe9ac3eaaa)
 
-## Contact
-For questions or feedback, contact [shun](mailto:kerdjidjmohamedseddk@gmail.com).
