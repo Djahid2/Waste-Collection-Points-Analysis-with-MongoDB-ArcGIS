@@ -38,7 +38,7 @@ This project focuses on analyzing the spatial distribution of urban waste collec
 ### Frontend
 1. Navigate to the frontend directory:
     ```bash
-    cd ./Frontend/
+    cd ./Frontend/Ecopoint/
     ```
 2. Install dependencies:
     ```bash
